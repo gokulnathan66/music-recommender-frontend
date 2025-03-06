@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Sun, Moon, Music2, Loader2 } from 'lucide-react';
 import axios from 'axios';
+const serverUrl = process.env.REACT_APP_SERVER_URL || "http://127.0.0.1:5000";
+
 
 type Message = {
   text: string;
@@ -24,9 +26,8 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:8000/api/chat', {
-        message: input
-      });
+      const response = await axios.post(`${serverUrl}/chat`, { message: input });
+
       
       setMessages(prev => [...prev, { text: response.data.response, isBot: true }]);
     } catch (error) {
