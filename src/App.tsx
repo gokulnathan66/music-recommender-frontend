@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Sun, Moon, Music2, Loader2 } from 'lucide-react';
 import axios from 'axios';
+import ReactMarkdown from "react-markdown";
 
 type Message = {
   text: string;
@@ -65,7 +66,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const SERVER_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:8000";
+      const SERVER_URL =import.meta.env.VITE_APP_SERVER_URL;
 
       const response = await axios.post(SERVER_URL, {
         message: input,
@@ -128,8 +129,8 @@ function App() {
                     ? `${isDarkMode ? 'bg-purple-900/50' : 'bg-purple-100'} rounded-tl-none`
                     : `${isDarkMode ? 'bg-blue-900/50' : 'bg-blue-100'} rounded-tr-none`
                 } ${isDarkMode ? 'text-white' : 'text-gray-800'} shadow-md`}>
-                  {message.text}
-                </div>
+      <ReactMarkdown>{message.text}</ReactMarkdown>
+      </div>
               </div>
             ))}
             {isLoading && (
@@ -138,7 +139,7 @@ function App() {
                   isDarkMode ? 'bg-purple-900/50' : 'bg-purple-100'
                 } rounded-tl-none animate-pulse flex items-center gap-2`}>
                   <Loader2 className="w-6 h-6 animate-spin" />
-                  <span>Music Buddy is typing...</span>
+                  <span>Music Buddy is Thinking...</span>
                 </div>
               </div>
             )}
