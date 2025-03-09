@@ -107,11 +107,3 @@ server {
 5. Open a **Pull Request**
 
 ---
-
-## Contact
-For any issues or inquiries, feel free to reach out!
-- **Email**: your-email@example.com
-- **GitHub**: [your-github](https://github.com/your-github)
-
-Happy coding!
-
