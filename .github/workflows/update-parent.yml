@@ -14,7 +14,7 @@ jobs:
 
       - name: Checkout parent repo
         run: |
-          git clone --depth=1 --recurse-submodules --shallow-submodules https://github.com/YOUR_GITHUB_USERNAME/PARENT_REPO.git parent-repo
+          git clone --depth=1 --recurse-submodules --shallow-submodules https://github.com/gokulnathan66/Music_recommender_Project_Parent.git parent-repo
           cd parent-repo
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
