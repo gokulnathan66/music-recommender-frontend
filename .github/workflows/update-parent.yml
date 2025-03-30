@@ -21,7 +21,7 @@ jobs:
 
       - name: Update submodules
         run: |
-          git submodule update --remote --merge
+          git submodule update --remote
           git add .
           git commit -m "Auto-updated submodules to latest commit" || echo "No changes to commit"
 
