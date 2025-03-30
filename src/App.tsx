@@ -104,7 +104,7 @@ function App() {
             </div>
             <div>
               <h1 className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Music Buddy</h1>
-              <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Powered by Gemini AI</p>
+              <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Powered by Agentic AI</p>
             </div>
           </div>
           <button
