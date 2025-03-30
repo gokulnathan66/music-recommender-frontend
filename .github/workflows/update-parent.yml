@@ -22,7 +22,14 @@ jobs:
       - name: Update submodule reference
         run: |
           cd parent-repo
-          git submodule update --remote 
+          git submodule update --remote
           git add .
           git commit -m "Auto-updated submodules to latest commit" || echo "No changes to commit"
+      
+      - name: Push updates to parent repo
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          cd parent-repo
+          git remote set-url origin https://gokulnathan66:${GH_PAT}@github.com/gokulnathan66/Music_recommender_Project_Parent.git
           git push origin main || echo "No changes to push"
