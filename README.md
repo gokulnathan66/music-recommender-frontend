@@ -51,14 +51,14 @@ npm run build
 ```sh
 npm run preview
 ```
-- Serves the build at **`http://localhost:4173`**.
+- Serves the build at **`http://localhost:5173`**.
 
 #### Serve the Build Using a Static Server *(Optional)*
 ```sh
 npm install -g serve
 serve -s dist -l 3000
 ```
-- Runs the production build on **`http://localhost:3000`**.
+- Runs the production build on **`http://localhost:517`**.
 
 ---
 
