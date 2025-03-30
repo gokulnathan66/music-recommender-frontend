@@ -8,63 +8,23 @@ on:
 jobs:
   update-parent:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Grants permission to push updates
     steps:
-      - name: Checkout child repo
+      - name: Checkout parent repo with submodules
         uses: actions/checkout@v3
+        with:
+          repository: gokulnathan66/Music_recommender_Project_Parent
+          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: true
+          fetch-depth: 1
 
-      - name: Checkout parent repo
+      - name: Update submodules
         run: |
-          git clone --depth=1 --recurse-submodules --shallow-submodules https://github.com/gokulnathan66/Music_recommender_Project_Parent.git parent-repo
-          cd parent-repo
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-
-      - name: Update submodule reference
-        run: |
-          cd parent-repo
-          git submodule update --remote
+          git submodule update --remote --merge
           git add .
           git commit -m "Auto-updated submodules to latest commit" || echo "No changes to commit"
 
-      - name: Push updates to parent repo
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+      - name: Push changes
         run: |
-          cd parent-repo
-          git remote set-url origin https://${GH_PAT}@github.com/gokulnathan66/Music_recommender_Project_Parent.git
-          git push origin main || echo "No changes to push"
-name: Update Parent Repo
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  update-parent:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout child repo
-        uses: actions/checkout@v3
-
-      - name: Checkout parent repo
-        run: |
-          git clone --depth=1 --recurse-submodules --shallow-submodules https://github.com/gokulnathan66/Music_recommender_Project_Parent.git parent-repo
-          cd parent-repo
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-
-      - name: Update submodule reference
-        run: |
-          cd parent-repo
-          git submodule update --remote
-          git add .
-          git commit -m "Auto-updated submodules to latest commit" || echo "No changes to commit"
-
-      - name: Push updates to parent repo
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: |
-          cd parent-repo
-          git remote set-url origin https://${GH_PAT}@github.com/gokulnathan66/Music_recommender_Project_Parent.git
           git push origin main || echo "No changes to push"
