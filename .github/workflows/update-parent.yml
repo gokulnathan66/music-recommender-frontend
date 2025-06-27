@@ -1,4 +1,4 @@
-name: Update Parent Repo
+name: Update Parent Submodule
 
 on:
   push:
@@ -6,25 +6,25 @@ on:
       - main
 
 jobs:
-  update-parent:
+  update-submodule:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # Grants permission to push updates
+
     steps:
-      - name: Checkout parent repo with submodules
-        uses: actions/checkout@v3
+      - name: Checkout parent repository
+        uses: actions/checkout@v4
         with:
           repository: gokulnathan66/Music_recommender_Project_Parent
-          token: ${{ secrets.GITHUB_TOKEN }}
-          submodules: true
-          fetch-depth: 1
+          token: ${{ secrets.music }}
+          submodules: recursive
 
-      - name: Update submodules
+      - name: Set up Git identity
         run: |
-          git submodule update --remote
-          git add .
-          git commit -m "Auto-updated submodules to latest commit" || echo "No changes to commit"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Push changes
+      - name: Update submodule to latest commit
         run: |
-          git push origin main || echo "No changes to push"
+          git submodule update --remote frontend/
+          git add frontend/
+          git commit -m "chore: update child submodule to latest commit [auto]" || echo "No changes to commit"
+          git push origin main
