@@ -13,7 +13,7 @@ Ensure you have the following installed:
 - **Git** (Optional for cloning the repo)
 
 ---
-
+updated
 ## Installation
 ### Clone the Repository
 ```sh
