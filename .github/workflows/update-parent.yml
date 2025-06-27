@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: gokulnathan66/Music_recommender_Project_Parent
-          token: ${{ secrets.music }}
+          token: ${{ secrets.PARENT_REPO_PAT }}
           submodules: recursive
 
       - name: Set up Git identity
